@@ -14,15 +14,15 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        SolveZIP contentSolution = new SolveZIP();
         File directoryPath = new File("./kartaca");
-        Map<String, String> fileNames = contentSolution.readNames(directoryPath);
-        ArrayList<String> content = null;
 
-        content = contentSolution.solveMap(fileNames);
+        SolveZIP contentSolution = new SolveZIP();
+        Map<String, String> fileNames = contentSolution.readFiles(directoryPath);
 
+        ArrayList<String> content = contentSolution.solveMap(fileNames);
+
+        // Creating and writing to the .txt file
         try {
-            File contentFile = new File("content.txt");
             FileWriter contentWriter = new FileWriter("content.txt");
 
             contentWriter.write(contentSolution.displayContent(content));
