@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Project: Kartaca
@@ -83,5 +81,53 @@ public class SolveZIP {
             names.put(file.getName(), binaryToString(sb.toString()));
         }
         return names;
+    }
+
+    public ArrayList<String> solveMap(Map<String, String> fileMap) {
+        Map<String, String> twoDigits = new HashMap<>();
+        Map<String, String> threeDigits = new HashMap<>();
+        Map<String, String> fourDigits = new HashMap<>();
+        ArrayList<String> content = new ArrayList<>();
+
+        for (String key : fileMap.keySet()) {
+            // sort keys and assign to the fileNames
+            if (key.startsWith("==", 2)) {
+                twoDigits.put(key, fileMap.get(key));
+            } else if (key.charAt(3) == '=') {
+                threeDigits.put(key, fileMap.get(key));
+            } else {
+                fourDigits.put(key, fileMap.get(key));
+            }
+        }
+
+        Map<String, String> treeMap = new TreeMap<>(twoDigits);
+        for (String key : treeMap.keySet()) {
+//            System.out.println(key + "\t" + treeMap.get(key));
+            content.add(treeMap.get(key));
+        }
+
+        treeMap = new TreeMap<>(threeDigits);
+        for (String key : treeMap.keySet()) {
+//            System.out.println(key + "\t" + treeMap.get(key));
+            content.add(treeMap.get(key));
+        }
+        treeMap = new TreeMap<>(fourDigits);
+        for (String key : treeMap.keySet()) {
+//            System.out.println(key + "\t" + treeMap.get(key));
+            content.add(treeMap.get(key));
+        }
+
+        content.forEach(System.out::println);
+        return content;
+    }
+
+    public String displayContent(ArrayList<String> content) {
+        StringBuilder correctedContentHelper = new StringBuilder();
+        String correctedContent;
+        content.forEach(correctedContentHelper::append);
+
+        correctedContent = correctedContentHelper.toString();
+
+        return correctedContent;
     }
 }

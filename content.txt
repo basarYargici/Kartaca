@@ -1,0 +1,38 @@
+Tebrikler İbrahim Başar Yargıcı, görev içeriğine ulaştın!
+
+İşte beklediğimiz görevin gereksinimleri;
+
+Tercih ettiğiniz bir dil ile (tercihen Java / Go / PHP / Python) yapılacak bir REST API'da GET, POST, PUT ve DELETE isteklerini karşılayabilecek 4 farklı endpoint sunulmalıdır. POST ve PUT metotları, istekleri boş request body ile kabul edebilmelidir.
+
+Bu API'ye gelen her istek için random 0-3 sn arasında başarılı bir yanıt dönmeli ve yanıt dönülmeden hemen önce "{metot tipi},{istek cevaplama msbir içerik ile log dosyasına i},{timestamp}" gibi üğü yazılmalıdır. Örn log: "GEsteğin ne kadar sürdAsync bir job, log dosyasına aT,1000,1614679220"
+
+satırları alıp Kafka'ya belirlnlık olarak yazılan ndermelidir.
+
+Bir consumer Kafenen bir formatta gö bilgisini yakalayıp, uygun göka'ya gönderilen logna yazmalıdır (RDBMS veya NoSQrülen bir veritabanıteki API isteklerinin ne kadarL gibi).
+
+Son 1 saatarı bir dashboard ekranında gr sürede tamamlandıklmeli ve grafik canlı olarak güafik olarak gösterilek tiplerine (PUT,DELETE gibi)ncellenmelidir.
+
+İstrme yapılmalıdır.
+
+Örnek grafi göre ayrı renklendihttps://kartaca.com/wp-contentk ekran görüntüsü;
+
+irdekten_yetisenler_usg_dashbo/uploads/2021/03/ceknu bize iletirken senden istedard.png
+
+
+Kod deposuhtar kodu: gAAAAABgUH5-8nF5PJBiğimiz sana özel anadhsGr6gcpBfcfbLojoT_XbrBt4bLlsTXf_qjrJngiImF5R-UfDdBmSgktE6HcccN5Z-LbZqzIQZH3VEMHW83JPLjZZng7lgCugKOdMt0KJCBynP9h-ul2eGSgYUEkrnfumHwYF5TQNhnLz8736a5QV5Maq3WP8wvcopNKz8ZvAMf7p_WwUvxDRaskUOe3OFc3YPDm3q5
+* Uygulamanın ve ara yüzün DoWzk-r8w==
+
+
+Notlar;
+nip çalışır hale getirileceği cker ile nasıl derleış olmalıdır. Docker-compose üREADME olarak yazılmut ile çalışacak şekilde servizerinden tek bir komabanı gibi bağımlılıklar da içs edilmelidir. Veritır.
+
+* README içerisinde servierisinde yer almalıdsıl istek atılacağı, ara yüz as endpoint'lerine naibi projenin nasıl çalıştırıladresinin ne olduğu g yer almalıdır.
+
+* Yukarıda vecağına dair bilgilertar kodu da README içerisine erilen sana özel anahv içeriğine ulaşmak için kullaklenmelidir.
+
+* GöreitHub, GitLab, Bitbucket gibi nılan kod ve proje Go'ya gönderilerek, bağlantı aderişime açık bir rep@kartaca.com'a iletilmelidir. resi insankaynaklari paylaşım sağlanamıyorsa, indiKod deposu üzerindenulaşmamız için bir dosya/bağlarilebilir dosyalara 
+Görevlerdeki tüm gereksinimlentı iletilmelidir.
+
+yseniz bile, moralinizi bozmayri yerine getiremedi kadarını bizimle mutlaka paylın ve tamamladığınızaşın.
+
+Kolay gelsin!

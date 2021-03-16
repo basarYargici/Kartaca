@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -12,13 +14,21 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        SolveZIP solution = new SolveZIP();
+        SolveZIP contentSolution = new SolveZIP();
         File directoryPath = new File("./kartaca");
-        Map<String, String> fileNames = solution.readNames(directoryPath);
+        Map<String, String> fileNames = contentSolution.readNames(directoryPath);
+        ArrayList<String> content = null;
 
-        for (String key : fileNames.keySet()) {
-            // sort keys and assign to the fileNames
-            System.out.println(key + "\t" + fileNames.get(key));
+        content = contentSolution.solveMap(fileNames);
+
+        try {
+            File contentFile = new File("content.txt");
+            FileWriter contentWriter = new FileWriter("content.txt");
+
+            contentWriter.write(contentSolution.displayContent(content));
+            contentWriter.close();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
         }
     }
 }
