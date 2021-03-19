@@ -3,12 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
- * Project: Kartaca
- * Package: PACKAGE_NAME
- * <p>
- *
  * @author İbrahim Başar YARGICI
- * Date 16.03.2021
+ * @date 16.03.2021
  */
 public class SolveZIP {
 
