@@ -1,6 +1,6 @@
-package Business.Abstract;
+package RESTAPI.Business.Abstract;
 
-import Entity.Concrete.City;
+import RESTAPI.Entity.Concrete.City;
 
 import java.util.List;
 
@@ -17,5 +17,5 @@ public interface CityService {
 
     void update(City city);
 
-    void delete(int id);
+    void delete(City city);
 }

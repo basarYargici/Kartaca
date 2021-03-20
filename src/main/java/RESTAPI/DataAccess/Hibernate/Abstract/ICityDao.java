@@ -1,6 +1,6 @@
-package DataAccess.Hibernate.Abstract;
+package RESTAPI.DataAccess.Hibernate.Abstract;
 
-import Entity.Concrete.City;
+import RESTAPI.Entity.Concrete.City;
 
 import java.util.List;
 
@@ -17,5 +17,5 @@ public interface ICityDao {
 
     void update(City city);
 
-    void delete(int id);
+    void delete(City city);
 }

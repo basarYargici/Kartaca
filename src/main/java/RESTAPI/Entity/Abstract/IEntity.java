@@ -1,4 +1,4 @@
-package Entity.Abstract;
+package RESTAPI.Entity.Abstract;
 
 /**
  * @author İbrahim Başar YARGICI
