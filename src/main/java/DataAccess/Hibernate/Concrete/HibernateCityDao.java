@@ -18,6 +18,7 @@ public class HibernateCityDao implements ICityDao {
 
     private EntityManager entityManager;
 
+
     @Autowired
     public HibernateCityDao(EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -31,22 +32,31 @@ public class HibernateCityDao implements ICityDao {
     }
 
     @Override
+    @Transactional
     public City getById(int id) {
-        return null;
+        Session session = entityManager.unwrap(Session.class);
+        return session.get(City.class, id);
     }
 
     @Override
+    @Transactional
     public void add(City city) {
-
+        Session session = entityManager.unwrap(Session.class);
+        session.saveOrUpdate(city);
     }
 
     @Override
+    @Transactional
     public void update(City city) {
-
+        Session session = entityManager.unwrap(Session.class);
+        session.saveOrUpdate(city);
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
-
+        Session session = entityManager.unwrap(Session.class);
+        City removeCity = session.get(City.class, id);
+        session.delete(removeCity);
     }
 }
