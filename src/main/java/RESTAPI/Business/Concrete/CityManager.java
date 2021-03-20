@@ -1,8 +1,8 @@
-package Business.Concrete;
+package RESTAPI.Business.Concrete;
 
-import Business.Abstract.CityService;
-import DataAccess.Hibernate.Abstract.ICityDao;
-import Entity.Concrete.City;
+import RESTAPI.Business.Abstract.CityService;
+import RESTAPI.DataAccess.Hibernate.Abstract.ICityDao;
+import RESTAPI.Entity.Concrete.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,35 +26,34 @@ public class CityManager implements CityService {
     @Override
     @Transactional
     public List<City> getAll() {
-        // Business Code
+        // RESTAPI.Business Code
         return cityDao.getAll();
     }
 
     @Override
     @Transactional
     public City getById(int id) {
-        // Business Code
+        // RESTAPI.Business Code
         return cityDao.getById(id);
     }
 
     @Override
     @Transactional
     public void add(City city) {
-        // Business Code
+        // RESTAPI.Business Code
         cityDao.add(city);
     }
 
     @Override
     @Transactional
     public void update(City city) {
-        // Business Code
+        // RESTAPI.Business Code
         cityDao.update(city);
     }
 
     @Override
     @Transactional
-    public void delete(int id) {
-        // Business Code
-        cityDao.delete(id);
+    public void delete(City city) {
+        cityDao.delete(city);
     }
 }

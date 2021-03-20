@@ -1,9 +1,10 @@
-package DataAccess.Hibernate.Concrete;
+package RESTAPI.DataAccess.Hibernate.Concrete;
 
-import DataAccess.Hibernate.Abstract.ICityDao;
-import Entity.Concrete.City;
+import RESTAPI.DataAccess.Hibernate.Abstract.ICityDao;
+import RESTAPI.Entity.Concrete.City;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -13,16 +14,16 @@ import java.util.List;
  * @author İbrahim Başar YARGICI
  * @date 20.03.2021
  */
-
+@Repository
 public class HibernateCityDao implements ICityDao {
 
     private EntityManager entityManager;
-
 
     @Autowired
     public HibernateCityDao(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+
 
     @Override
     @Transactional
@@ -49,14 +50,22 @@ public class HibernateCityDao implements ICityDao {
     @Transactional
     public void update(City city) {
         Session session = entityManager.unwrap(Session.class);
-        session.saveOrUpdate(city);
+        City updateCity = session.get(City.class, city.getId());
+
+        if (updateCity != null){
+            updateCity = city;
+            session.merge(updateCity);
+        }
     }
 
     @Override
     @Transactional
-    public void delete(int id) {
+    public void delete(City city) {
         Session session = entityManager.unwrap(Session.class);
-        City removeCity = session.get(City.class, id);
-        session.delete(removeCity);
+        City deleteCity = session.get(City.class, city.getId());
+
+        if (deleteCity != null) {
+            session.delete(deleteCity);
+        }
     }
 }

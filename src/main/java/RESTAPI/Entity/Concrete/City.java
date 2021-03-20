@@ -1,11 +1,8 @@
-package Entity.Concrete;
+package RESTAPI.Entity.Concrete;
 
-import Entity.Abstract.IEntity;
+import RESTAPI.Entity.Abstract.IEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author İbrahim Başar YARGICI
@@ -16,19 +13,19 @@ import javax.persistence.Table;
 @Table(name = "city")
 public class City implements IEntity {
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "CountryCode")
+    @Column(name = "countrycode")
     private String countryCode;
 
-    @Column(name = "Population")
+    @Column(name = "population")
     private int population;
 
-    @Column(name = "District")
+    @Column(name = "district")
     private String district;
 
     public City(String name, String countryCode, String district, int population) {
