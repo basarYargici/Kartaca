@@ -1,5 +1,7 @@
 package RESTAPI.Log;
 
+import RESTAPI.Engine.Controller.KafkaController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
 import org.springframework.stereotype.Repository;
@@ -32,6 +34,7 @@ public class RESTLogger {
         }
     }
 
+    // TODO opening log file is not consistent, it can open second log file!
     public void addLog(String message) {
         if (!isLogOpened) {
             openLog();
@@ -43,6 +46,12 @@ public class RESTLogger {
     @Repository
     static class LoggingInMemory extends InMemoryHttpTraceRepository {
         RESTLogger restLogger = new RESTLogger();
+        private final KafkaController kafkaController;
+
+        @Autowired
+        LoggingInMemory(KafkaController kafkaController) {
+            this.kafkaController = kafkaController;
+        }
 
         @Override
         public void add(HttpTrace trace) {
@@ -54,7 +63,7 @@ public class RESTLogger {
             String message = method + "," + timeTaken + "," + timestamp;
 
             restLogger.addLog(message);
-
+            kafkaController.sendMessageToKafkaTopic(message);
 //        System.out.printf("%-20s%-20s%-50s%-20s\n", method, status, timeTaken, timestamp);
         }
     }
