@@ -2,7 +2,10 @@ package RESTAPI.Entity.Concrete;
 
 import RESTAPI.Entity.Abstract.IEntity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author İbrahim Başar YARGICI

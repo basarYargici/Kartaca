@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class CityManager implements CityService {
 
-    private ICityDao cityDao;
+    private final ICityDao cityDao;
 
     @Autowired
     public CityManager(ICityDao cityDao) {

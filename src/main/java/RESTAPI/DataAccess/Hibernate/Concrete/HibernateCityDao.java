@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public class HibernateCityDao implements ICityDao {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     @Autowired
     public HibernateCityDao(EntityManager entityManager) {
@@ -52,7 +52,7 @@ public class HibernateCityDao implements ICityDao {
         Session session = entityManager.unwrap(Session.class);
         City updateCity = session.get(City.class, city.getId());
 
-        if (updateCity != null){
+        if (updateCity != null) {
             updateCity = city;
             session.merge(updateCity);
         }
