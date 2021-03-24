@@ -2,11 +2,7 @@ package RESTAPI.Controller;
 
 import RESTAPI.Business.Abstract.CityService;
 import RESTAPI.Entity.Concrete.City;
-import RESTAPI.Log.RESTLogger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.trace.http.HttpTrace;
-import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,25 +56,3 @@ public class CityController {
     }
 }
 
-@Repository
-class LoggingInMemoryHttpTraceRepository extends InMemoryHttpTraceRepository {
-    RESTLogger restLogger = new RESTLogger();
-
-
-    @Override
-    public void add(HttpTrace trace) {
-        String method = trace.getRequest().getMethod();
-        String status = String.valueOf(trace.getResponse().getStatus());
-        String timeTaken = String.valueOf(trace.getTimeTaken());
-        String timestamp = String.valueOf(trace.getTimestamp().getEpochSecond());
-
-        String message = method + "\t" + timeTaken + "\t" + timestamp;
-
-//        restLogger.logToFile(message);
-
-
-        System.out.printf("%-20s%-20s%-50s%-20s\n", method, status, timeTaken, timestamp);
-
-    }
-
-}
