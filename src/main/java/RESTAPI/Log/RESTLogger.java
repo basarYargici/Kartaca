@@ -1,6 +1,7 @@
 package RESTAPI.Log;
 
 import RESTAPI.Engine.Controller.KafkaController;
+import RESTAPI.Entity.Concrete.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
@@ -45,12 +46,14 @@ public class RESTLogger {
 
     @Repository
     static class LoggingInMemory extends InMemoryHttpTraceRepository {
-        RESTLogger restLogger = new RESTLogger();
         private final KafkaController kafkaController;
+        private final Log log;
+        RESTLogger restLogger = new RESTLogger();
 
         @Autowired
-        LoggingInMemory(KafkaController kafkaController) {
+        public LoggingInMemory(KafkaController kafkaController, Log log) {
             this.kafkaController = kafkaController;
+            this.log = log;
         }
 
         @Override
@@ -62,8 +65,13 @@ public class RESTLogger {
 
             String message = method + "," + timeTaken + "," + timestamp;
 
+            log.setMethod(method);
+            log.setTimeTaken(timeTaken);
+            log.setTimestamp(timestamp);
+            log.setId(log.getId() + 1);
+
             restLogger.addLog(message);
-            kafkaController.sendMessageToKafkaTopic(message);
+            kafkaController.sendMessageToKafkaTopic(log);
 //        System.out.printf("%-20s%-20s%-50s%-20s\n", method, status, timeTaken, timestamp);
         }
     }
