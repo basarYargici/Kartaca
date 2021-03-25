@@ -75,7 +75,6 @@ public class RESTLogger {
             logService.add(log);
             restLogger.addLog(message);
             kafkaController.sendMessageToKafkaTopic(log);
-//        System.out.printf("%-20s%-20s%-50s%-20s\n", method, status, timeTaken, timestamp);
         }
     }
 }

@@ -23,7 +23,6 @@ public class LogManager implements LogService {
         this.logDao = logDao;
     }
 
-
     @Override
     @Transactional
     public List<Log> getAll() {

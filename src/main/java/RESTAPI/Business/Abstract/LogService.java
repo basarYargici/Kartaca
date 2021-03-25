@@ -1,8 +1,6 @@
 package RESTAPI.Business.Abstract;
 
 import RESTAPI.Entity.Concrete.Log;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 /**
