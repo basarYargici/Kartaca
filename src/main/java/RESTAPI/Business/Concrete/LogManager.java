@@ -27,7 +27,6 @@ public class LogManager implements LogService {
     @Override
     @Transactional
     public List<Log> getAll() {
-
         return logDao.getAll();
     }
 
@@ -35,5 +34,11 @@ public class LogManager implements LogService {
     @Transactional
     public Log getById(int id) {
         return logDao.getById(id);
+    }
+
+    @Override
+    @Transactional
+    public void add(Log log) {
+        logDao.add(log);
     }
 }

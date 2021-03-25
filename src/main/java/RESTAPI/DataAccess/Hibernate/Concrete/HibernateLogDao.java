@@ -28,15 +28,20 @@ public class HibernateLogDao implements ILogDao {
     @Transactional
     public List<Log> getAll() {
         Session session = entityManager.unwrap(Session.class);
-        return session.createQuery("From Log",Log.class).getResultList();
-//        return null;
+        return session.createQuery("From Log", Log.class).getResultList();
     }
-
 
     @Override
     @Transactional
     public Log getById(int id) {
         Session session = entityManager.unwrap(Session.class);
-        return session.get(Log.class,id);
+        return session.get(Log.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void add(Log log) {
+        Session session = entityManager.unwrap(Session.class);
+        session.saveOrUpdate(log);
     }
 }

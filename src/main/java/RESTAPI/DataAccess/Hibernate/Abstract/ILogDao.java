@@ -12,4 +12,5 @@ import java.util.List;
 public interface ILogDao {
     List<Log> getAll();
     Log getById(int id);
+    void add(Log log);
 }
