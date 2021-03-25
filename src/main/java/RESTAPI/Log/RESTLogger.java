@@ -71,7 +71,6 @@ public class RESTLogger {
             log.setMethod(method);
             log.setTimeTaken(timeTaken);
             log.setTimestamp(timestamp);
-            log.setId(log.getId() + 1);
 
             logService.add(log);
             restLogger.addLog(message);

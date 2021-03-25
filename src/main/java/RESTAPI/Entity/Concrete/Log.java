@@ -3,10 +3,7 @@ package RESTAPI.Entity.Concrete;
 import RESTAPI.Entity.Abstract.IEntity;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author İbrahim Başar YARGICI
@@ -18,6 +15,7 @@ import javax.persistence.Table;
 public class Log implements IEntity {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "method")

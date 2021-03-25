@@ -42,6 +42,6 @@ public class HibernateLogDao implements ILogDao {
     @Transactional
     public void add(Log log) {
         Session session = entityManager.unwrap(Session.class);
-        session.saveOrUpdate(log);
+        session.save(log);
     }
 }
