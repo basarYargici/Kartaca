@@ -1,6 +1,7 @@
 package RESTAPI.Business.Abstract;
 
 import RESTAPI.Entity.Concrete.City;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 

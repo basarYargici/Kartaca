@@ -4,6 +4,7 @@ import RESTAPI.Entity.Abstract.IEntity;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +12,7 @@ import javax.persistence.Table;
  * @author İbrahim Başar YARGICI
  * @date 25.03.2021
  */
+@Entity
 @Component
 @Table(name = "log")
 public class Log implements IEntity {
