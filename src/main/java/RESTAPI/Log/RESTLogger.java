@@ -1,6 +1,7 @@
 package RESTAPI.Log;
 
 import RESTAPI.Business.Abstract.LogService;
+import RESTAPI.DataAccess.Hibernate.Abstract.IGraphicService;
 import RESTAPI.Engine.Controller.KafkaController;
 import RESTAPI.Entity.Concrete.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,11 @@ import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
 import org.springframework.stereotype.Repository;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.FileHandler;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -20,16 +24,27 @@ import java.util.logging.SimpleFormatter;
 public class RESTLogger {
     private Logger logger;
     private boolean isLogOpened = false;
+    protected final String pathToSaveLog = "D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log";
 
     public void openLog() {
-        String pathToSaveLog = "D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log";
 
         try {
             logger = Logger.getLogger("MyLogger");
             FileHandler fileHandler = new FileHandler(pathToSaveLog, true);
+            fileHandler.setFormatter(new SimpleFormatter() {
+                private static final String format = "[%1$tF %1$tT] %3$s %n";
+
+                @Override
+                public String format(LogRecord record) {
+                    return String.format(format,
+                            new Date(record.getMillis()),
+                            record.getLevel().getLocalizedName(),
+                            record.getMessage());
+                }
+            });
             logger.addHandler(fileHandler);
-            SimpleFormatter formatter = new SimpleFormatter();
-            fileHandler.setFormatter(formatter);
+//            SimpleFormatter formatter = new SimpleFormatter();
+//            fileHandler.setFormatter(formatter);
             isLogOpened = true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,13 +65,16 @@ public class RESTLogger {
         private final KafkaController kafkaController;
         private final Log log;
         private final LogService logService;
+        private final IGraphicService graphicService;
         RESTLogger restLogger = new RESTLogger();
+        File file = new File("D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log");
 
         @Autowired
-        public LoggingInMemory(KafkaController kafkaController, Log log, LogService logService) {
+        public LoggingInMemory(KafkaController kafkaController, Log log, LogService logService, IGraphicService graphicService) {
             this.kafkaController = kafkaController;
             this.log = log;
             this.logService = logService;
+            this.graphicService = graphicService;
         }
 
         @Override
@@ -74,6 +92,7 @@ public class RESTLogger {
 
             logService.add(log);
             restLogger.addLog(message);
+            graphicService.readLogs(file);
             kafkaController.sendMessageToKafkaTopic(log);
         }
     }
