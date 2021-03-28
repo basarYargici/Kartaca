@@ -23,6 +23,5 @@ public final class KafkaController {
     @PostMapping
     public void sendMessageToKafkaTopic(@RequestParam Log log) {
         producerService.sendMessage(log);
-
     }
 }

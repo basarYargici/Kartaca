@@ -12,5 +12,5 @@ import java.util.List;
 public interface GraphicService {
     List<List<Log>> readLogs(File file);
 
-    void sketchGraph(List<List<Log>> logs);
+    String sketchGraph(List<List<Log>> logs);
 }

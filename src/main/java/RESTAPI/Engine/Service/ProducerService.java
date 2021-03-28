@@ -20,7 +20,7 @@ public class ProducerService {
     private static final Logger logger = LoggerFactory.getLogger(ProducerService.class);
 
     private final KafkaTemplate<String, Log> kafkaTemplate;
-    private final String TOPIC = "kafkaTopic";
+    private final String TOPIC = "log_topic";
 
     @Autowired
     public ProducerService(KafkaTemplate<String, Log> kafkaTemplate) {

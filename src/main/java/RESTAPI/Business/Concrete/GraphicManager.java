@@ -30,8 +30,10 @@ public class GraphicManager implements GraphicService {
     }
 
     @Override
-    public void sketchGraph(List<List<Log>> logs) {
+    public String sketchGraph(List<List<Log>> logs) {
         // TODO Now we have list of logs as separated. Next step is sketching Multi Series Area Charts-Graphs
+//        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAa");
+        return "graph.html";
     }
 
 }
