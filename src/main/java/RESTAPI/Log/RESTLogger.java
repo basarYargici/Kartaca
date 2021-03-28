@@ -1,7 +1,8 @@
 package RESTAPI.Log;
 
+import RESTAPI.Business.Abstract.GraphicService;
 import RESTAPI.Business.Abstract.LogService;
-import RESTAPI.DataAccess.Hibernate.Abstract.IGraphicService;
+import RESTAPI.Controller.GraphicController;
 import RESTAPI.Engine.Controller.KafkaController;
 import RESTAPI.Entity.Concrete.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -27,9 +29,8 @@ public class RESTLogger {
     protected final String pathToSaveLog = "D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log";
 
     public void openLog() {
-
+        logger = Logger.getLogger("MyLogger");
         try {
-            logger = Logger.getLogger("MyLogger");
             FileHandler fileHandler = new FileHandler(pathToSaveLog, true);
             fileHandler.setFormatter(new SimpleFormatter() {
                 private static final String format = "[%1$tF %1$tT] %3$s %n";
@@ -43,8 +44,6 @@ public class RESTLogger {
                 }
             });
             logger.addHandler(fileHandler);
-//            SimpleFormatter formatter = new SimpleFormatter();
-//            fileHandler.setFormatter(formatter);
             isLogOpened = true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,15 +62,22 @@ public class RESTLogger {
     @Repository
     static class LoggingInMemory extends InMemoryHttpTraceRepository {
         private final KafkaController kafkaController;
+        private final GraphicController graphicController;
         private final Log log;
         private final LogService logService;
-        private final IGraphicService graphicService;
+        private final GraphicService graphicService;
         RESTLogger restLogger = new RESTLogger();
         File file = new File("D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log");
+        List<List<Log>> logs;
 
         @Autowired
-        public LoggingInMemory(KafkaController kafkaController, Log log, LogService logService, IGraphicService graphicService) {
+        public LoggingInMemory(KafkaController kafkaController,
+                               GraphicController graphicController,
+                               Log log,
+                               LogService logService,
+                               GraphicService graphicService) {
             this.kafkaController = kafkaController;
+            this.graphicController = graphicController;
             this.log = log;
             this.logService = logService;
             this.graphicService = graphicService;
@@ -84,7 +90,7 @@ public class RESTLogger {
             String timeTaken = String.valueOf(trace.getTimeTaken());
             String timestamp = String.valueOf(trace.getTimestamp().getEpochSecond());
 
-            String message = method + "," + timeTaken + "," + timestamp;
+            String message = String.format("%-10s %-10s %-10s", method, timeTaken, timestamp);
 
             log.setMethod(method);
             log.setTimeTaken(timeTaken);
@@ -92,7 +98,8 @@ public class RESTLogger {
 
             logService.add(log);
             restLogger.addLog(message);
-            graphicService.readLogs(file);
+            logs = graphicService.readLogs(file);
+            graphicController.graph(logs);
             kafkaController.sendMessageToKafkaTopic(log);
         }
     }

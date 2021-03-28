@@ -1,7 +1,6 @@
 package RESTAPI.DataAccess.Hibernate.Abstract;
 
 import RESTAPI.Entity.Concrete.Log;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -11,6 +10,8 @@ import java.util.List;
  */
 public interface ILogDao {
     List<Log> getAll();
+
     Log getById(int id);
+
     void add(Log log);
 }
