@@ -1,6 +1,7 @@
 package RESTAPI.Business.Abstract;
 
 import RESTAPI.Entity.Concrete.Log;
+import org.springframework.ui.Model;
 
 import java.io.File;
 import java.util.List;
@@ -12,5 +13,5 @@ import java.util.List;
 public interface GraphicService {
     List<List<Log>> readLogs(File file);
 
-    String sketchGraph(List<List<Log>> logs);
+    String sketchGraph(Model model);
 }

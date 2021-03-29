@@ -1,8 +1,6 @@
 package RESTAPI.Log;
 
-import RESTAPI.Business.Abstract.GraphicService;
 import RESTAPI.Business.Abstract.LogService;
-import RESTAPI.Controller.GraphicController;
 import RESTAPI.Engine.Controller.KafkaController;
 import RESTAPI.Entity.Concrete.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +8,8 @@ import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
@@ -24,9 +20,9 @@ import java.util.logging.SimpleFormatter;
  * @date 21.03.2021
  */
 public class RESTLogger {
+    protected final String pathToSaveLog = "D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log";
     private Logger logger;
     private boolean isLogOpened = false;
-    protected final String pathToSaveLog = "D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log";
 
     public void openLog() {
         logger = Logger.getLogger("MyLogger");
@@ -62,25 +58,15 @@ public class RESTLogger {
     @Repository
     static class LoggingInMemory extends InMemoryHttpTraceRepository {
         private final KafkaController kafkaController;
-        private final GraphicController graphicController;
         private final Log log;
         private final LogService logService;
-        private final GraphicService graphicService;
         RESTLogger restLogger = new RESTLogger();
-        File file = new File("D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log");
-        List<List<Log>> logs;
 
         @Autowired
-        public LoggingInMemory(KafkaController kafkaController,
-                               GraphicController graphicController,
-                               Log log,
-                               LogService logService,
-                               GraphicService graphicService) {
+        public LoggingInMemory(KafkaController kafkaController, Log log, LogService logService) {
             this.kafkaController = kafkaController;
-            this.graphicController = graphicController;
             this.log = log;
             this.logService = logService;
-            this.graphicService = graphicService;
         }
 
         @Override
@@ -98,9 +84,8 @@ public class RESTLogger {
 
             logService.add(log);
             restLogger.addLog(message);
-            logs = graphicService.readLogs(file);
-            graphicController.graph(logs);
             kafkaController.sendMessageToKafkaTopic(log);
         }
+
     }
 }

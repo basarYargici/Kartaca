@@ -21,10 +21,6 @@ import java.util.List;
 @Repository
 public class HibernateGraphDao implements IGraphicDao {
 
-    enum Method {
-        GET, POST, DELETE
-    }
-
     @Override
     public List<List<Log>> readLogs(File file) {
         try {
@@ -73,5 +69,9 @@ public class HibernateGraphDao implements IGraphicDao {
         }
 
         return null;
+    }
+
+    enum Method {
+        GET, POST, DELETE
     }
 }
