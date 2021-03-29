@@ -82,8 +82,7 @@ public class SolveZIP {
     }
 
     /**
-     * This method takes all file names and returns map whose key is name of file and value is the String
-     * form of binary content.
+     * This method takes all file names and returns map whose key is name of file and value is the String form of binary content.
      *
      * @param directoryPath is the path of directory which will be examined.
      * @return Map of file name and content
@@ -94,7 +93,7 @@ public class SolveZIP {
         Map<String, String> names = new HashMap<>();
 
         Scanner sc = null;
-        for (File file : filesList) {
+        for (File file: filesList) {
             sc = new Scanner(file);
             String input;
             StringBuilder sb = new StringBuilder();
@@ -120,7 +119,7 @@ public class SolveZIP {
         Map<String, String> fourDigits = new HashMap<>();
         ArrayList<String> content = new ArrayList<>();
 
-        for (String key : fileMap.keySet()) {
+        for (String key: fileMap.keySet()) {
             if (key.startsWith("==", 2)) {
                 twoDigits.put(key, fileMap.get(key));
             } else if (key.charAt(3) == '=') {
@@ -131,12 +130,12 @@ public class SolveZIP {
         }
 
         Map<String, String> treeMap = new TreeMap<>(twoDigits);
-        for (String key : treeMap.keySet()) {
+        for (String key: treeMap.keySet()) {
             content.add(treeMap.get(key));
         }
 
         treeMap = new TreeMap<>(threeDigits);
-        for (String key : treeMap.keySet()) {
+        for (String key: treeMap.keySet()) {
             content.add(treeMap.get(key));
         }
 
@@ -144,14 +143,14 @@ public class SolveZIP {
         // comes first, but numbers wanted first.
         treeMap = new TreeMap<>(fourDigits);
         int count = 0, chCount = 0;
-        for (String key : treeMap.keySet()) {
+        for (String key: treeMap.keySet()) {
             if (key.charAt(key.length() - 1) >= 97 && key.charAt(key.length() - 1) <= 122 && count == 6) {
                 content.add(treeMap.get(key));
                 chCount++;
                 if (chCount >= 4) {
                     count = 0;
                     chCount = 0;
-                    for (String key2 : tempMap.keySet()) {
+                    for (String key2: tempMap.keySet()) {
                         content.add(tempMap.get(key2));
                     }
                     tempMap.clear();
@@ -163,7 +162,7 @@ public class SolveZIP {
         }
 
         // for last 6 names
-        for (String key2 : tempMap.keySet()) {
+        for (String key2: tempMap.keySet()) {
             content.add(tempMap.get(key2));
         }
 

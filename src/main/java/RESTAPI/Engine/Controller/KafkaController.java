@@ -1,6 +1,7 @@
 package RESTAPI.Engine.Controller;
 
 import RESTAPI.Engine.Service.ProducerService;
+import RESTAPI.Entity.Concrete.Log;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,7 @@ public final class KafkaController {
     }
 
     @PostMapping
-    public void sendMessageToKafkaTopic(@RequestParam String message) {
-        producerService.sendMessage(message);
+    public void sendMessageToKafkaTopic(@RequestParam Log log) {
+        producerService.sendMessage(log);
     }
 }

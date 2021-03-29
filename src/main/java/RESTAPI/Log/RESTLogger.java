@@ -1,13 +1,17 @@
 package RESTAPI.Log;
 
+import RESTAPI.Business.Abstract.LogService;
 import RESTAPI.Engine.Controller.KafkaController;
+import RESTAPI.Entity.Concrete.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.trace.http.HttpTrace;
 import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.FileHandler;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -16,18 +20,26 @@ import java.util.logging.SimpleFormatter;
  * @date 21.03.2021
  */
 public class RESTLogger {
+    protected final String pathToSaveLog = "D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log";
     private Logger logger;
     private boolean isLogOpened = false;
 
     public void openLog() {
-        String pathToSaveLog = "D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log";
-
+        logger = Logger.getLogger("MyLogger");
         try {
-            logger = Logger.getLogger("MyLogger");
             FileHandler fileHandler = new FileHandler(pathToSaveLog, true);
+            fileHandler.setFormatter(new SimpleFormatter() {
+                private static final String format = "[%1$tF %1$tT] %3$s %n";
+
+                @Override
+                public String format(LogRecord record) {
+                    return String.format(format,
+                            new Date(record.getMillis()),
+                            record.getLevel().getLocalizedName(),
+                            record.getMessage());
+                }
+            });
             logger.addHandler(fileHandler);
-            SimpleFormatter formatter = new SimpleFormatter();
-            fileHandler.setFormatter(formatter);
             isLogOpened = true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,12 +57,16 @@ public class RESTLogger {
 
     @Repository
     static class LoggingInMemory extends InMemoryHttpTraceRepository {
-        RESTLogger restLogger = new RESTLogger();
         private final KafkaController kafkaController;
+        private final Log log;
+        private final LogService logService;
+        RESTLogger restLogger = new RESTLogger();
 
         @Autowired
-        LoggingInMemory(KafkaController kafkaController) {
+        public LoggingInMemory(KafkaController kafkaController, Log log, LogService logService) {
             this.kafkaController = kafkaController;
+            this.log = log;
+            this.logService = logService;
         }
 
         @Override
@@ -60,11 +76,16 @@ public class RESTLogger {
             String timeTaken = String.valueOf(trace.getTimeTaken());
             String timestamp = String.valueOf(trace.getTimestamp().getEpochSecond());
 
-            String message = method + "," + timeTaken + "," + timestamp;
+            String message = String.format("%-10s %-10s %-10s", method, timeTaken, timestamp);
 
+            log.setMethod(method);
+            log.setTimeTaken(timeTaken);
+            log.setTimestamp(timestamp);
+
+            logService.add(log);
             restLogger.addLog(message);
-            kafkaController.sendMessageToKafkaTopic(message);
-//        System.out.printf("%-20s%-20s%-50s%-20s\n", method, status, timeTaken, timestamp);
+            kafkaController.sendMessageToKafkaTopic(log);
         }
+
     }
 }

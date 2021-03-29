@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="EN">
+<head>
+	<script>
+        window.onload = function () {
+
+            let chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "KARTACA TASK"
+                },
+                axisX: {
+                    valueFormatString: "DDD",
+                    minimum: new Date(2017, 1, 5, 23),
+                    maximum: new Date(2017, 1, 12, 1)
+                },
+                axisY: {
+                    title: "NUMBER OF REQUESTS"
+                },
+                legend: {
+                    verticalAlign: "top",
+                    horizontalAlign: "right",
+                    dockInsidePlotArea: true
+                },
+                toolTip: {
+                    shared: true
+                },
+                data: [
+                    {
+                        name: "GET",
+                        showInLegend: true,
+                        legendMarkerType: "square",
+                        lineThickness: 4,
+                        type: "area",
+                        color: "#B6D4E7",
+                        markerSize: 0,
+                        dataPoints: [
+                            {x: new Date(2017, 1, 6), y: 220},
+                            {x: new Date(2017, 1, 7), y: 120},
+                            {x: new Date(2017, 1, 8), y: 144},
+                            {x: new Date(2017, 1, 9), y: 162},
+                            {x: new Date(2017, 1, 10), y: 129},
+                            {x: new Date(2017, 1, 11), y: 109},
+                            {x: new Date(2017, 1, 12), y: 129}
+                        ]
+                    },
+                    {
+                        name: "POST",
+                        showInLegend: true,
+                        legendMarkerType: "square",
+                        lineThickness: 4,
+                        type: "area",
+                        color: "#E3B1AB",
+                        markerSize: 0,
+                        dataPoints: [
+                            {x: new Date(2017, 1, 6), y: 42},
+                            {x: new Date(2017, 1, 7), y: 34},
+                            {x: new Date(2017, 1, 8), y: 29},
+                            {x: new Date(2017, 1, 9), y: 42},
+                            {x: new Date(2017, 1, 10), y: 53},
+                            {x: new Date(2017, 1, 11), y: 15},
+                            {x: new Date(2017, 1, 12), y: 12}
+                        ]
+                    },
+                    {
+                        name: "DELETE",
+                        showInLegend: true,
+                        legendMarkerType: "square",
+                        lineThickness: 4,
+                        type: "area",
+                        color: "#822B7F",
+                        markerSize: 1,
+                        dataPoints: [
+                            {x: new Date(2017, 1, 6), y: 20},
+                            {x: new Date(2017, 1, 7), y: 20},
+                            {x: new Date(2017, 1, 8), y: 90},
+                            {x: new Date(2017, 1, 9), y: 10},
+                            {x: new Date(2017, 1, 10), y: 53},
+                            {x: new Date(2017, 1, 11), y: 15},
+                            {x: new Date(2017, 1, 12), y: 12}
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+
+        }
+	</script>
+	<title>log</title>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

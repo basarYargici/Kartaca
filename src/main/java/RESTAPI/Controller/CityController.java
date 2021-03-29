@@ -36,7 +36,6 @@ public class CityController {
     public void update(@RequestBody City city) {
         if (city.getId() == 0) return;
         cityService.update(city);
-
     }
 
     @DeleteMapping("/delete")
