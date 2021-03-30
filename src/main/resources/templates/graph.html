@@ -1,13 +1,42 @@
 <!DOCTYPE HTML>
-<html lang="EN">
+<html lang="EN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+
+	<!-- TODO datapoints and other special datas should come from ${get},${post} or ${delete} but for now they are hardcoded  -->
+	<ul>
+		<li th:each="g : ${get}">
+			<span th:text="${g.method} + ${g.timeTaken}">Default</span>
+		</li>
+	</ul>
+	<br>
+	<ul>
+		<li th:each="p : ${post}">
+			<span th:text="${p.method} + ${p.timeTaken}">Default</span>
+		</li>
+	</ul>
+	<br>
+	<ul>
+		<li th:each="d : ${delete}">
+			<span th:text="${d.method} + ${d.timeTaken}">Default</span>
+		</li>
+	</ul>
+
+
 	<script>
+
+        let date = new Date();
+        let now = date.getHours() + ":" + date.getMinutes();
+
+        let before = date.getHours() - 1 + ":" + date.getMinutes()
+
+
         window.onload = function () {
 
             let chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 title: {
-                    text: "KARTACA TASK"
+                    text: now + ":" + before
+                    // text: [[${get.size}]]
                 },
                 axisX: {
                     valueFormatString: "DDD",

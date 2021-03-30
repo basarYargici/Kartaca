@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,8 +36,20 @@ public class GraphicManager implements GraphicService {
 
     @Override
     public String sketchGraph(Model model) {
+        List<List<Log>> logs = readLogs(file);
+        List<Log> gets = logs.get(0);
+        List<Log> posts = logs.get(1);
+        List<Log> deletes = logs.get(2);
 
-        model.addAttribute("logs", readLogs(file));
+        Date d = new Date();
+
+        String now = d.getHours() + ":" + d.getMinutes();
+
+        System.out.println("NOOOW" + now);
+        model.addAttribute("get", gets);
+        model.addAttribute("post", posts);
+        model.addAttribute("delete", deletes);
+        model.addAttribute("now", now);
         // TODO Now we have list of logs as separated. Next step is sketching Multi Series Area Charts-Graphs
         return "graph.html";
     }

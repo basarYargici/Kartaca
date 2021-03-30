@@ -4,6 +4,8 @@ import RESTAPI.Entity.Abstract.IEntity;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.time.LocalTime;
+import java.util.Date;
 
 /**
  * @author İbrahim Başar YARGICI
@@ -18,6 +20,9 @@ public class Log implements IEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "createdtime")
+    private Date createdTime;
+
     @Column(name = "method")
     private String method;
 
@@ -30,7 +35,8 @@ public class Log implements IEntity {
     public Log() {
     }
 
-    public Log(String method, String timeTaken, String timestamp) {
+    public Log(Date createdTime, String method, String timeTaken, String timestamp) {
+        this.createdTime = createdTime;
         this.method = method;
         this.timeTaken = timeTaken;
         this.timestamp = timestamp;
@@ -68,4 +74,13 @@ public class Log implements IEntity {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+
+    public Date getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
 }

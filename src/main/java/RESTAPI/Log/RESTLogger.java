@@ -75,12 +75,14 @@ public class RESTLogger {
             String status = String.valueOf(trace.getResponse().getStatus());
             String timeTaken = String.valueOf(trace.getTimeTaken());
             String timestamp = String.valueOf(trace.getTimestamp().getEpochSecond());
+            Date date = new Date(System.currentTimeMillis());
 
             String message = String.format("%-10s %-10s %-10s", method, timeTaken, timestamp);
 
             log.setMethod(method);
             log.setTimeTaken(timeTaken);
             log.setTimestamp(timestamp);
+            log.setCreatedTime(date);
 
             logService.add(log);
             restLogger.addLog(message);

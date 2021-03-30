@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -43,11 +44,12 @@ public class HibernateGraphDao implements IGraphicDao {
                 // parse line to obtain what you want
                 lineDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(line.substring(dateStartIndex, dateEndIndex));
 
-                // subtraction gives second and dividing it with 1000 gives seconds, 60 minutes
+                // subtraction gives millisecond and dividing it with 1000 gives seconds, 60 minutes
                 diff = Math.abs(currentTime.getTime() - lineDate.getTime()) / (1000 * 60);
 
                 if (diff < 60) {
-                    Log newLog = new Log(line.substring(methodStartIndex, methodEndIndex),
+                    Log newLog = new Log(lineDate,
+                            line.substring(methodStartIndex, methodEndIndex),
                             line.substring(timeTakenStartIndex, timeTakenEndIndex),
                             line.substring(timestampStartIndex, timestampEndIndex));
                     if (newLog.getMethod().trim().equals(Method.GET.toString())) {
