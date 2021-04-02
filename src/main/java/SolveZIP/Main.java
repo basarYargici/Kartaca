@@ -21,7 +21,7 @@ public class Main {
 
         // Creating and writing to the .txt file
         try {
-            FileWriter contentWriter = new FileWriter("D:/IdeaProjects/KartacaTask/src/main/java/SolveZIP/ZIPContent.txt");
+            FileWriter contentWriter = new FileWriter("src/main/java/SolveZIP/ZIPContent.txt");
 
             contentWriter.write(contentSolution.displayContent(content));
             contentWriter.close();

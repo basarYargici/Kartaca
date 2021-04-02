@@ -18,7 +18,7 @@ import java.util.List;
 public class GraphicManager implements GraphicService {
 
     private final IGraphicDao graphicDao;
-    File file = new File("D:/IdeaProjects/KartacaTask/src/main/java/RESTAPI/Log/LogContent.log");
+    File file = new File("src/main/java/RESTAPI/Log/LogContent.log");
 
 
     @Autowired

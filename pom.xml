@@ -68,12 +68,6 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!--        logging requests-responses-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.zalando</groupId>-->
-        <!--            <artifactId>logbook-spring-boot-starter</artifactId>-->
-        <!--            <version>1.5.0</version>-->
-        <!--        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -87,13 +81,6 @@
             <artifactId>spring-kafka</artifactId>
             <version>2.6.7</version>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-
 
     </dependencies>
 
@@ -104,8 +91,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.4.3</version>
             </plugin>
-
         </plugins>
+        <finalName>kartaca-docker</finalName>
     </build>
 
 </project>
