@@ -1,6 +1,6 @@
 # Kartaca Çekirdekten Yetişenler 2021
 
-<h4>Kartaca - Çekirdekten Yetişenler 2021 - Java Spring Boot - MySQL - Apache Kafka - Docker</h4>
+<h4>Java Spring Boot - MySQL - Apache Kafka - Docker</h4>
  
 <h4>Anahtar Kod:</h4>
 gAAAAABgUH5-8nF5PJBTXf_qjrJngiImF5R-UfDdhsGr6gcpBfcfbLojoT_XbrBt4bLlsHW83JPLjZZng7lgCugKOdBmSgktE6HcccN5Z-LbZqzIQZH3VEMHwYF5TQNhnLz8736a5QVdMt0KJCBynP9h-ul2eGSgYUEkrnfumDRaskUOe3OFc3YPDm3q55Maq3WP8wvcopNKz8ZvAMf7p_WwUvxWzk-r8w==
