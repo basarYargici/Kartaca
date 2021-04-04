@@ -36,7 +36,7 @@ public class ProducerService {
      */
     @Async
     public void sendMessage(Log log) {
-        logger.info(String.format("$$$$ => Producing message: %s", log));
+        logger.info(String.format("$$$$ => Producing message: %s", log.getMethod()));
 
         ListenableFuture<SendResult<String, Log>> future = this.kafkaTemplate.send(TOPIC, log);
         future.addCallback(new ListenableFutureCallback<>() {
