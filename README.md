@@ -62,9 +62,7 @@ komutlarını girmesi gereklidir.
           ![grafik](https://github.com/basarYargici/Kartaca/blob/dev/assets/(15)%20graph.png)
           
 # Uygulamayı Çalıştırma
-Docker implementasyonu için gereken zamanı sağlık sorunlarımdan kaynaklı bulamadım. Veritabanı bağlantısında sorun ya
-şadım ve daha fazla üzerinde duramadım. Bundan dolayı uygulamayı kendi programınızda derleyip çalıştıramazsınız. Ancak
-kendi bilgisayarımda çalışır halde olduğu için ekran görüntüleri ile burada anlatmaya çalıştım.
+Docker implementasyonu için gereken zamanı sağlık sorunlarımdan kaynaklı bulamadım. Veritabanı bağlantısında sorun yaşadım ve daha fazla üzerinde duramadım. Bundan dolayı uygulamayı kendi programınızda derleyip çalıştıramazsınız. Ancak kendi bilgisayarımda çalışır halde olduğu için ekran görüntüleri ile burada anlatmaya çalıştım.
 
 # Proje hakkında
 Verilen bu görev ile birlikte 2 hafta içerisinde daha önce edinmediğim tecrübeler edindim. Kendi adıma ilkler dizisi oldu bu görev. 
