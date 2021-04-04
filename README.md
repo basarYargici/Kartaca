@@ -7,7 +7,7 @@ gAAAAABgUH5-8nF5PJBTXf_qjrJngiImF5R-UfDdhsGr6gcpBfcfbLojoT_XbrBt4bLlsHW83JPLjZZn
 <br/><br/>
 
 # Zip Görev Çözümü
-[Zip Çözüm Dosyası](https://github.com/basarYargici/Kartaca/tree/dev/src/main/java/SolveZIP)
+[Zip Çözüm Dosyası](https://github.com/basarYargici/Kartaca/tree/dev/src/main/java/SolveZIP) <br>
 [Zip İçeriği](https://github.com/basarYargici/Kartaca/blob/dev/src/main/java/SolveZIP/ZIPContent.txt)
 
 # Uygulamanın Kullanımı
