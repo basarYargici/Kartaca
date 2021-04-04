@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * @author İbrahim Başar YARGICI
  * @date 28.03.2021
+ * <p>
+ * This class is the REST Controller of Graphic.
  */
 @Controller
 @RequestMapping("/api")
@@ -22,6 +24,12 @@ public class GraphicController {
         this.graphicService = graphicService;
     }
 
+    /**
+     * This method will pass the model to sketch graph.
+     *
+     * @param model is the way of of passing attributes
+     * @return html page
+     */
     @GetMapping("/graph")
     public String graph(Model model) {
         return graphicService.sketchGraph(model);

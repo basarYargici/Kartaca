@@ -10,6 +10,8 @@ import javax.persistence.Table;
 /**
  * @author İbrahim Başar YARGICI
  * @date 20.03.2021
+ * <p>
+ * This class is the representation of City table in entity form.
  */
 
 @Entity
@@ -41,6 +43,7 @@ public class City implements IEntity {
     public City() {
     }
 
+    // region getters and setters
     public int getId() {
         return id;
     }
@@ -80,5 +83,5 @@ public class City implements IEntity {
     public void setPopulation(int population) {
         this.population = population;
     }
-
+    // endregion
 }

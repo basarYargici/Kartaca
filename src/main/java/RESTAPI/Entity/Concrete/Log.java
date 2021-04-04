@@ -4,12 +4,13 @@ import RESTAPI.Entity.Abstract.IEntity;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.time.LocalTime;
 import java.util.Date;
 
 /**
  * @author İbrahim Başar YARGICI
  * @date 25.03.2021
+ * <p>
+ * This class is the representation of Log table in entity form.
  */
 @Entity
 @Component
@@ -43,6 +44,7 @@ public class Log implements IEntity {
     }
 
 
+    // region getters and setters
     public int getId() {
         return id;
     }
@@ -82,5 +84,5 @@ public class Log implements IEntity {
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
-
+    // endregion
 }

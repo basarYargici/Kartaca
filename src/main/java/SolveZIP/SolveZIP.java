@@ -7,6 +7,8 @@ import java.util.*;
 /**
  * @author İbrahim Başar YARGICI
  * @date 16.03.2021
+ * <p>
+ * This class is written to solve given "kartaca" folder which contains binary files.
  */
 public class SolveZIP {
 

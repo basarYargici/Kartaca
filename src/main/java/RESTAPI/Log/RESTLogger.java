@@ -18,12 +18,18 @@ import java.util.logging.SimpleFormatter;
 /**
  * @author İbrahim Başar YARGICI
  * @date 21.03.2021
+ * <p>
+ * This class is responsible for logging processes.
  */
 public class RESTLogger {
     protected final String pathToSaveLog = "src/main/java/RESTAPI/Log/LogContent.log";
-    private Logger logger;
-    private boolean isLogOpened = false;
+    private boolean isLogOpened = false; // to check if log file is opened
 
+    private Logger logger;
+
+    /**
+     * This method opens the '.log' file if it does not exist.
+     */
     public void openLog() {
         if (!isLogOpened) {
             logger = Logger.getLogger("MyLogger");
@@ -49,6 +55,11 @@ public class RESTLogger {
 
     }
 
+    /**
+     * This method takes message and informs the logger file.
+     *
+     * @param message is the content of log
+     */
     public void addLog(String message) {
         openLog();
         // the following statement is used to log any messages
@@ -69,6 +80,12 @@ public class RESTLogger {
             this.logService = logService;
         }
 
+        /**
+         * If something requested, this method will work and saves the log in .log file, log table in database and will inform the
+         * kafka about request via log.
+         *
+         * @param trace can be used for analyzing contextual information such as HTTP headers
+         */
         @Override
         public void add(HttpTrace trace) {
             String method = trace.getRequest().getMethod();
