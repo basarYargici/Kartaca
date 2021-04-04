@@ -6,7 +6,9 @@
 # Çekirdekten Yetişenler 2021 - Uygulama ve Servis Geliştirme Görevi
 <h4>Kartaca - Çekirdekten Yetişenler 2021 - Uygulama ve Servis Geliştirme Görevi. Java Spring - MongoDB Çözümü.</h4>
 
-![image](https://user-images.githubusercontent.com/44208853/113494650-dd41b700-94f2-11eb-9ac5-559755036f29.png)
+{github_user_name}/{repo_name}/{branch}/.github/images/{aset_name}.{asset_extension}
+
+![image](https://raw.githubusercontent.com/basarYargici/Kartaca-dd41b700-94f2-11eb-9ac5-559755036f29.png)
 
 <h4>Anahtar Kod:</h4>
 gAAAAABgUMFncaQC0bE6YwAYOoll4iwFHSV38hj5YcKokvqxQdXLWQRoHwkYpKaloACOmAJJuqTO8O91UawmOeQ0j7CU2Dch-FAWl5mUOUuwZ0hv1j_6yY2Uxy7uIZ4mLIX4o_f4wGrQsLbrdDdntUqHvZiS93ig_p2wr0g5zq2ssnU_Nqg6fEwcNu7pDwoUXvwSpmPnOYvW
