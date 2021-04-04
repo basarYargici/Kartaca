@@ -13,6 +13,8 @@ import java.util.List;
 /**
  * @author İbrahim Başar YARGICI
  * @date 20.03.2021
+ * <p>
+ * This class will access the City table in database.
  */
 @Repository
 public class HibernateCityDao implements ICityDao {
@@ -24,7 +26,11 @@ public class HibernateCityDao implements ICityDao {
         this.entityManager = entityManager;
     }
 
-
+    /**
+     * This method gets all cities from City table.
+     *
+     * @return List of City
+     */
     @Override
     @Transactional
     public List<City> getAll() {
@@ -32,6 +38,12 @@ public class HibernateCityDao implements ICityDao {
         return session.createQuery("FROM City", City.class).getResultList();
     }
 
+    /**
+     * This method gets the City whose id is equal to given id from database.
+     *
+     * @param id is the Id of City
+     * @return City from database whose id is id
+     */
     @Override
     @Transactional
     public City getById(int id) {
@@ -39,6 +51,11 @@ public class HibernateCityDao implements ICityDao {
         return session.get(City.class, id);
     }
 
+    /**
+     * This method saves new City to database.
+     *
+     * @param city is the new City instance that will be added to database
+     */
     @Override
     @Transactional
     public void add(City city) {
@@ -46,6 +63,11 @@ public class HibernateCityDao implements ICityDao {
         session.saveOrUpdate(city);
     }
 
+    /**
+     * This method first tries to find the city in database. if finds the city, updates it.
+     *
+     * @param city is a City instance that will be updated in database
+     */
     @Override
     @Transactional
     public void update(City city) {
@@ -58,6 +80,11 @@ public class HibernateCityDao implements ICityDao {
         }
     }
 
+    /**
+     * This method first tries to find the city in database. if finds the city, deletes it.
+     *
+     * @param city is a City instance that will be deleted in database
+     */
     @Override
     @Transactional
     public void delete(City city) {

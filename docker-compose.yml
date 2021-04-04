@@ -1,0 +1,61 @@
+# docker implementation did not completed that's why I am commenting related files!
+
+#version: '3.5'
+#
+#services:
+#  zookeeper:
+#    image: wurstmeister/zookeeper
+#    container_name: zookeeper
+#    ports:
+#      - "2181:2181"
+#    networks:
+#      - backend
+#
+#  kafka:
+#    image: wurstmeister/kafka
+#    container_name: kafka
+#    ports:
+#      - "9092:9092"
+#    environment:
+#      KAFKA_ADVERTISED_HOST_NAME: 192.168.0.31
+#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+#    networks:
+#      - backend
+#
+#  db:
+#    image: mysql
+#    container_name: mysqldb
+#    ports:
+#      - "3306:3306"
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: world
+#      #      MYSQL_USER: root
+#      MYSQL_PASSWORD: root
+#      MYSQL_ROOT_PASSWORD: root
+#    #    volumes:
+#    #      - db-data:/var/lib/mysql
+#    networks:
+#      - backend
+#
+#  app:
+#    # Configuration for building the docker image for the backend service
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
+#    #    restart: unless-stopped
+#    depends_on:
+#      - db # This service depends on mysql. Start that first.
+#    environment: # Pass environment variables to the service
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
+#    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+#      - backend
+#
+#
+#networks:
+#  backend:
+#

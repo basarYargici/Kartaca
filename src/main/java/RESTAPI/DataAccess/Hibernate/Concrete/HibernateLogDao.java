@@ -13,6 +13,8 @@ import java.util.List;
 /**
  * @author İbrahim Başar YARGICI
  * @date 25.03.2021
+ * <p>
+ * This class will access the Log table in database.
  */
 @Repository
 public class HibernateLogDao implements ILogDao {
@@ -24,6 +26,11 @@ public class HibernateLogDao implements ILogDao {
         this.entityManager = entityManager;
     }
 
+    /**
+     * This method gets all logs from Log table.
+     *
+     * @return list of Log
+     */
     @Override
     @Transactional
     public List<Log> getAll() {
@@ -31,6 +38,12 @@ public class HibernateLogDao implements ILogDao {
         return session.createQuery("From Log", Log.class).getResultList();
     }
 
+    /**
+     * This method gets the Log whose id is equal to given id from database.
+     *
+     * @param id is the id of Log
+     * @return Log from database whose id is id
+     */
     @Override
     @Transactional
     public Log getById(int id) {
@@ -38,6 +51,11 @@ public class HibernateLogDao implements ILogDao {
         return session.get(Log.class, id);
     }
 
+    /**
+     * This method saves new Log to database.
+     *
+     * @param log is the new Log instance that will be added to database
+     */
     @Override
     @Transactional
     public void add(Log log) {

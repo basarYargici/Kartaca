@@ -1,13 +1,28 @@
 <!DOCTYPE HTML>
-<html lang="EN">
+<html lang="EN" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
+	<title>graph</title>
+
+
+	<!-- TODO datapoints and other special datas should come from ${get},${post} or ${delete} but for now they are
+	hardcoded that means graph is not completed!  -->
+
 	<script>
+
+        let date = new Date();
+        let now = date.getHours() + ":" + date.getMinutes();
+
+        let before = date.getHours() - 1 + ":" + date.getMinutes()
+
+
         window.onload = function () {
 
             let chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 title: {
-                    text: "KARTACA TASK"
+                    text: "REQUESTS BETWEEN " + before + " and " + now
+                    // text: [[${get.size}]]
                 },
                 axisX: {
                     valueFormatString: "DDD",
@@ -86,10 +101,57 @@
 
         }
 	</script>
-	<title>log</title>
+
+	<style>
+        div {
+            text-align: center;
+            font-size: 15px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+	</style>
 </head>
 <body>
+<div>datapoints and other special datas should come from ${get},${post} or ${delete} but for now they are
+	hardcoded that means graph implementation is not completed!
+</div>
+
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<h2>HTML Table</h2>
+
+<table>
+	<tr>
+		<th>METHOD NAME</th>
+		<th>TIMETAKEN</th>
+		<th>TIMESTAMP</th>
+		<th>REQUEST TIME</th>
+	</tr>
+	<span th:each="log : ${logs}">
+   		<td>
+   		    <tr th:each="g: ${log}">
+				<td th:text="${g.method}">Default
+				<td th:text="${g.timeTaken}"> Default
+				<td th:text="${g.timestamp}">Default
+				<td th:text="${g.createdTime.toString().substring(10,20)}">Default
+   		    </tr>
+   		<td>
+	</span>
+</table>
+
 </body>
 </html>

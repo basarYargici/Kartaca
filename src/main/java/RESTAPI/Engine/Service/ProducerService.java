@@ -14,19 +14,26 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 /**
  * @author İbrahim Başar YARGICI
  * @date 24.03.2021
+ * <p>
+ * This class will be responsible of producer service.
  */
 @Service
 public class ProducerService {
     private static final Logger logger = LoggerFactory.getLogger(ProducerService.class);
 
     private final KafkaTemplate<String, Log> kafkaTemplate;
-    private final String TOPIC = "log_topic";
+    private final String TOPIC = "log_topic"; // topic name
 
     @Autowired
     public ProducerService(KafkaTemplate<String, Log> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    /**
+     * This method will send the log instance to kafka.
+     *
+     * @param log is the instance of Log
+     */
     @Async
     public void sendMessage(Log log) {
         logger.info(String.format("$$$$ => Producing message: %s", log));

@@ -18,9 +18,16 @@ import java.util.Map;
 /**
  * @author İbrahim Başar YARGICI
  * @date 24.03.2021
+ * <p>
+ * This class will be the configuration of Kafka.
  */
 @Configuration
 public class KafkaConfiguration {
+    /**
+     * This method configures producer.
+     *
+     * @return ProducerFactory
+     */
     @Bean
     public ProducerFactory<String, Log> producerFactoryString() {
         Map<String, Object> configProps = new HashMap<>();
@@ -37,6 +44,11 @@ public class KafkaConfiguration {
         return new KafkaTemplate<>(producerFactoryString());
     }
 
+    /**
+     * This method configures consumer.
+     *
+     * @return ConsumerFactory
+     */
     @Bean
     public ConsumerFactory<String, Log> consumerFactory() {
         Map<String, Object> configProps = new HashMap<>();
