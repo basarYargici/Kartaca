@@ -53,7 +53,7 @@ komutlarını girmesi gereklidir.
 
 <h3> Tüm bu request işlemleri gerçekleşirken arkada gerçekleşen işlemler:</h3>
     <li>Loglar istenen şekilde ( "{metot tipi},{istek cevaplama ms},{timestamp}" ) local bir dosyaya kaydedilir
-          ![log_dosyası](https://github.com/basarYargici/Kartaca/blob/dev/assets/(12)%20all%20logs.png)
+          ![log_dosyası](https://github.com/basarYargici/Kartaca/blob/master/assets/(13)%20LogContent.log%20file.png)
     <li>Loglar istenen şekilde ( "{metot tipi},{istek cevaplama ms},{timestamp}" ) veritabanına kaydedilir
           ![log_veritabanı](https://github.com/basarYargici/Kartaca/blob/dev/assets/(14)%20log%20table.png)
     <li>Bu sırada kafka requestleri real time dinler ve topic'e logları kaydeder
